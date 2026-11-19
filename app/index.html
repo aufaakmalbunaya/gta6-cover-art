@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Nights — GTA 6-style cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="panel" aria-label="Cover controls">
+    <header class="masthead">
+      <h1>Vice City Nights</h1>
+      <p class="tagline">Turn your photo into GTA 6-style cover art.</p>
+    </header>
+
+    <fieldset class="group">
+      <legend>Cover size</legend>
+      <div class="seg" id="sizeSeg" role="group" aria-label="Cover size">
+        <button type="button" data-size="square">Square<br><span>1080 &times; 1080</span></button>
+        <button type="button" data-size="portrait">Portrait<br><span>1080 &times; 1350</span></button>
+        <button type="button" data-size="landscape" class="on">Landscape<br><span>1920 &times; 1080</span></button>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>Layout &amp; grade</legend>
+      <div class="seg" id="layoutSeg" role="group" aria-label="Panel layout">
+        <button type="button" data-layout="poster" class="on">Poster</button>
+        <button type="button" data-layout="triptych">Triptych</button>
+      </div>
+      <div class="seg" id="gradeSeg" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="on">Sunset</button>
+        <button type="button" data-grade="neon">Neon</button>
+        <button type="button" data-grade="noir">Noir</button>
+      </div>
+      <div class="seg" id="titleSeg" role="group" aria-label="Title position">
+        <button type="button" data-title-pos="bottom" class="on">Title at bottom</button>
+        <button type="button" data-title-pos="top">Title at top</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>Words</legend>
+      <label>Caption
+        <input id="caption" type="text" maxlength="28" value="SUNSET HEIST" autocomplete="off">
+      </label>
+      <label>Tag line
+        <input id="subcaption" type="text" maxlength="28" value="VICE CITY" autocomplete="off">
+      </label>
+    </fieldset>
+
+    <fieldset class="group photos">
+      <legend>Photos — one per panel</legend>
+      <p class="hint">Pick a photo for each panel, or fill every panel with one photo.
+        Photos stay on your machine; nothing is uploaded.</p>
+      <div class="slot" data-slot="0">
+        <h3>Panel 1 · hero</h3>
+        <div class="slotRow">
+          <label class="fileBtn">Choose photo
+            <input type="file" accept="image/*" data-photo="0">
+          </label>
+          <button type="button" data-sample="0">Use sample</button>
+          <button type="button" data-fill-all="0">Fill all panels</button>
+        </div>
+        <label>Zoom <input type="range" min="1" max="2.5" step="0.01" value="1" data-zoom="0"></label>
+        <label>Move left–right <input type="range" min="-1" max="1" step="0.01" value="0" data-panx="0"></label>
+        <label>Move up–down <input type="range" min="-1" max="1" step="0.01" value="0" data-pany="0"></label>
+      </div>
+      <div class="slot" data-slot="1">
+        <h3>Panel 2</h3>
+        <div class="slotRow">
+          <label class="fileBtn">Choose photo
+            <input type="file" accept="image/*" data-photo="1">
+          </label>
+          <button type="button" data-sample="1">Use sample</button>
+          <button type="button" data-fill-all="1">Fill all panels</button>
+        </div>
+        <label>Zoom <input type="range" min="1" max="2.5" step="0.01" value="1" data-zoom="1"></label>
+        <label>Move left–right <input type="range" min="-1" max="1" step="0.01" value="0" data-panx="1"></label>
+        <label>Move up–down <input type="range" min="-1" max="1" step="0.01" value="0" data-pany="1"></label>
+      </div>
+      <div class="slot" data-slot="2">
+        <h3>Panel 3</h3>
+        <div class="slotRow">
+          <label class="fileBtn">Choose photo
+            <input type="file" accept="image/*" data-photo="2">
+          </label>
+          <button type="button" data-sample="2">Use sample</button>
+          <button type="button" data-fill-all="2">Fill all panels</button>
+        </div>
+        <label>Zoom <input type="range" min="1" max="2.5" step="0.01" value="1" data-zoom="2"></label>
+        <label>Move left–right <input type="range" min="-1" max="1" step="0.01" value="0" data-panx="2"></label>
+        <label>Move up–down <input type="range" min="-1" max="1" step="0.01" value="0" data-pany="2"></label>
+      </div>
+    </fieldset>
+
+    <button id="export" type="button" class="exportBtn">Export PNG</button>
+    <p id="status" role="status">Pick a photo to start — or use a sample.</p>
+  </section>
+
+  <section class="stage" aria-label="Live cover preview">
+    <canvas id="cover" width="1920" height="1080" aria-label="The cover"></canvas>
+    <p class="stageNote" id="stageNote">Landscape · 1920 &times; 1080</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
