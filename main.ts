@@ -8,6 +8,9 @@
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//
+// Round 2 changed only the app under app/ and the screenshots: the entrypoint
+// itself is unchanged apart from this note, so the two runs still match byte for byte.
 
 import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

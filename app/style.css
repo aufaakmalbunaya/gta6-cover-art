@@ -6,16 +6,17 @@
   font-display: swap;
 }
 
+/* Round 2 palette: deep violet editor, hot pink accent, warm gold second. */
 :root {
-  --ink: #f6efe4;
-  --ink-dim: #b9aec4;
-  --bg: #150a24;
-  --panel: #221239;
-  --panel-edge: #3d2358;
-  --accent: #ff5e7a;
-  --accent-2: #ffb347;
+  --paper: #f6efe4;
+  --muted: #b9aec4;
+  --page: #150a24;
+  --card: #221239;
+  --edge: #3d2358;
+  --pink: #ff5e7a;
+  --gold: #ffb347;
   --cream: #fff3d6;
-  --dark: #1c0b2e;
+  --night: #1c0b2e;
 }
 
 * { box-sizing: border-box; }
@@ -23,8 +24,8 @@
 html, body {
   margin: 0;
   min-height: 100%;
-  background: var(--bg);
-  color: var(--ink);
+  background: var(--page);
+  color: var(--paper);
   font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
@@ -38,13 +39,14 @@ html, body {
   margin: 0 auto;
 }
 
+/* The control column on the left. */
 .panel {
-  flex: 0 0 340px;
+  flex: 0 0 350px;
   display: flex;
   flex-direction: column;
   gap: 13px;
-  background: var(--panel);
-  border: 1px solid var(--panel-edge);
+  background: var(--card);
+  border: 1px solid var(--edge);
   border-radius: 14px;
   padding: 16px 18px;
 }
@@ -56,13 +58,13 @@ html, body {
   font-size: 34px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background: linear-gradient(100deg, var(--accent-2), var(--accent) 55%, #c86bfa);
+  background: linear-gradient(100deg, var(--gold), var(--pink) 55%, #c86bfa);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.tagline { margin: 2px 0 0; color: var(--ink-dim); }
+.tagline { margin: 2px 0 0; color: var(--muted); }
 
 .group {
   margin: 0;
@@ -83,22 +85,25 @@ html, body {
   margin-bottom: 8px;
 }
 
+/* Segmented pickers; .wrap lets four or five buttons sit on two rows. */
 .seg { display: flex; gap: 6px; }
+.seg.wrap { flex-wrap: wrap; }
+.seg.wrap button { flex: 1 1 30%; }
 
 .seg button {
   flex: 1;
   font: inherit;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--paper);
   background: #2e1a4d;
-  border: 1px solid var(--panel-edge);
+  border: 1px solid var(--edge);
   border-radius: 8px;
   padding: 8px 6px;
   cursor: pointer;
 }
 
-.seg button span { font-weight: 400; font-size: 12px; color: var(--ink-dim); }
-.seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.seg button span { font-weight: 400; font-size: 12px; color: var(--muted); }
+.seg button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
 .seg button.on span { color: #ffe3ea; }
 
 label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; }
@@ -106,18 +111,28 @@ label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-
 input[type="text"] {
   font: inherit;
   padding: 9px 10px;
-  border: 1px solid var(--panel-edge);
+  border: 1px solid var(--edge);
   border-radius: 8px;
   background: #180b2b;
-  color: var(--ink);
+  color: var(--paper);
 }
 
-input[type="range"] { width: 100%; accent-color: var(--accent); }
+input[type="range"] { width: 100%; accent-color: var(--pink); }
+input[type="checkbox"] { accent-color: var(--pink); width: 16px; height: 16px; }
 
-.hint { margin: 0; color: var(--ink-dim); font-size: 13px; font-weight: 400; }
+/* The badge row: a checkbox, its label, and the badge words beside it. */
+.checkRow {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.checkRow input[type="text"] { flex: 1 1 160px; }
+
+.hint { margin: 0; color: var(--muted); font-size: 13px; font-weight: 400; }
 
 .slot {
-  border: 1px solid var(--panel-edge);
+  border: 1px solid var(--edge);
   border-radius: 10px;
   padding: 10px 12px;
   display: flex;
@@ -131,23 +146,26 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--accent-2);
+  color: var(--gold);
 }
 
 .slotRow { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .slotRow button,
-.fileBtn {
+.fileBtn,
+.wideBtn {
   font: inherit;
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--paper);
   background: #2e1a4d;
-  border: 1px solid var(--panel-edge);
+  border: 1px solid var(--edge);
   border-radius: 7px;
   padding: 7px 10px;
   cursor: pointer;
 }
+
+.wideBtn { width: 100%; padding: 9px 10px; }
 
 .fileBtn input { display: none; }
 
@@ -159,13 +177,21 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   padding: 13px;
   border: 0;
   border-radius: 10px;
-  background: linear-gradient(100deg, var(--accent-2), var(--accent) 60%, #c86bfa);
+  background: linear-gradient(100deg, var(--gold), var(--pink) 60%, #c86bfa);
   color: #fff;
   cursor: pointer;
 }
 
-#status { margin: 0; color: var(--ink-dim); font-size: 13px; min-height: 1.4em; }
+#status { margin: 0; color: var(--muted); font-size: 13px; min-height: 1.4em; }
 
+.fine { margin: 0; color: var(--muted); font-size: 12px; }
+
+/* A visible keyboard focus ring on every control. */
+button:focus-visible,
+input:focus-visible,
+label.fileBtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* The live preview on the right. */
 .stage {
   flex: 1 1 auto;
   min-width: 0;
@@ -184,12 +210,13 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   display: block;
   border-radius: 6px;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
-  background: var(--dark);
+  background: var(--night);
 }
 
-.stageNote { margin: 0; color: var(--ink-dim); font-size: 13px; }
+.stageNote { margin: 0; color: var(--muted); font-size: 13px; }
 
-body.shot-cover { background: var(--dark); }
+/* Cover-only screenshots: hide the controls, fill the window with the art. */
+body.shot-cover { background: var(--night); }
 body.shot-cover .app { padding: 0; max-width: none; gap: 0; }
 body.shot-cover .panel { display: none; }
 body.shot-cover .stage { position: static; }
